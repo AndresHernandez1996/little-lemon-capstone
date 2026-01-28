@@ -1,0 +1,92 @@
+:root {
+  /* =========================
+     Fonts
+  ========================= */
+  --font-body: 'Karla', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Markazi Text', serif;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* =========================
+     Colors
+  ========================= */
+  --color-primary: #495e57;
+  --color-accent: #f4ce14;
+  --color-secondary: #ee9972;
+  --color-secondary-soft: #fbdabb;
+  --color-bg: #edefee;
+  --color-surface: #ffffff;
+  --color-text-primary: #111111;
+  --color-text-inverse: #ffffff;
+
+  /* =========================
+     Typography
+  ========================= */
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
+
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.25rem;
+  --font-size-h3: 1.5rem;
+
+  --line-height-body: 1.5;
+  --line-height-heading: 1.1;
+
+  /* Letter spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+
+  /* =========================
+     Spacing
+  ========================= */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+  --section-padding-y: 64px;
+
+  /* =========================
+     Layout
+  ========================= */
+  --max-width: 1120px;
+  --header-height: 72px;
+
+  /* =========================
+     Breakpoints
+  ========================= */
+  --bp-sm: 640px;
+  --bp-md: 1024px;
+  --bp-lg: 1280px;
+
+  /* =========================
+     Effects
+  ========================= */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  --border-width-sm: 1px;
+
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Focus ring */
+  --focus-ring: 2px solid var(--color-accent);
+
+  /* =========================
+     Z-Index
+  ========================= */
+  --z-header: 100;
+  --z-modal: 1000;
+}

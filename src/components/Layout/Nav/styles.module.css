@@ -1,0 +1,46 @@
+.nav {
+  background-color: var(--color-surface); /* #ffffff */
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  position: relative;
+  padding: var(--space-xs) 0;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Hover + focus */
+.link:hover,
+.link:focus-visible {
+  color: var(--color-accent);
+  transition: 0.2s ease;
+}
+
+/* Indicador inferior */
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.2s ease;
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  width: 100%;
+}

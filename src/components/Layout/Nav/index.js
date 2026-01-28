@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './styles.module.css'
 
 const Nav = () => {
   const navLinks = [
@@ -11,11 +12,13 @@ const Nav = () => {
   ]
 
   return (
-    <nav className="nav" aria-label="Main navigation">
-      <ul className="nav__list">
+    <nav className={styles.nav} aria-label="Main navigation">
+      <ul className={styles.list}>
         {navLinks.map((link) => (
-          <li key={link.href}>
-            <a href={link.href}>{link.name}</a>
+          <li key={link.href} className={styles.item}>
+            <a href={link.href} className={styles.link}>
+              {link.name}
+            </a>
           </li>
         ))}
       </ul>
