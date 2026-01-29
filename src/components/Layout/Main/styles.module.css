@@ -1,6 +1,7 @@
 .main {
   padding-top: var(--header-height);
   background-color: var(--color-primary);
+  animation: pageEnter 500ms ease-out both;
 }
 
 .section {
@@ -22,6 +23,52 @@
   font-family: var(--font-heading);
   font-size: var(--font-size-h2);
   color: var(--color-text-primary);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1000ms ease,
+    transform 1000ms ease;
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal:nth-of-type(2) {
+  transition-delay: 80ms;
+}
+
+.reveal:nth-of-type(3) {
+  transition-delay: 160ms;
+}
+
+.reveal:nth-of-type(4) {
+  transition-delay: 240ms;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 640px) {

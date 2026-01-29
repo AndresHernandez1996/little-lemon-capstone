@@ -13,9 +13,18 @@ const Header = ({ children }) => {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY
+      const headerHeight = headerRef.current?.offsetHeight ?? 0
+
+      if (currentScrollY <= 0) {
+        if (headerRef.current) {
+          headerRef.current.style.transform = 'translateY(0)'
+        }
+        prevScrollY.current = currentScrollY
+        return
+      }
 
       // scrolling down
-      if (currentScrollY > prevScrollY.current) {
+      if (currentScrollY > prevScrollY.current && currentScrollY > headerHeight) {
         if (headerRef.current) {
           headerRef.current.style.transform = 'translateY(-200px)'
         }
