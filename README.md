@@ -2,8 +2,6 @@
 
 **Live:** https://little-lemon-pi-six.vercel.app
 
-<br />
-
 # Little Lemon Capstone
 
 A friendly, modern web app for a fictional Mediterranean restaurant. It highlights the brand story,

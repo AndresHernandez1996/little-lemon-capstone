@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './Booking.module.css'
 import restaurant from '../../../assets/UI/restaurant.jpg'
 import ReservationReview from './ReservationReview'
@@ -9,13 +9,30 @@ const tags = ['Seasonal menu', 'Family friendly', 'Perfect for celebrations']
 
 const Booking = () => {
   const [lastReservation, setLastReservation] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const submitTimeoutRef = useRef(null)
 
   const handleSuccess = (reservation) => {
-    setLastReservation(reservation)
+    setIsSubmitting(true)
+    if (submitTimeoutRef.current) {
+      clearTimeout(submitTimeoutRef.current)
+    }
+    submitTimeoutRef.current = setTimeout(() => {
+      setLastReservation(reservation)
+      setIsSubmitting(false)
+    }, 1500)
   }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current)
+      }
+    }
   }, [])
 
   return (
@@ -62,16 +79,26 @@ const Booking = () => {
           </div>
 
           <aside className={styles.card} aria-label="Reservation form">
-            {lastReservation ? (
-              <>
-                <p className={styles.successMessage} role="status">
-                  Reservation confirmed!
-                </p>
-                <ReservationReview reservation={lastReservation} />
-              </>
-            ) : (
-              <BookingForm onSuccess={handleSuccess} />
-            )}
+            <div
+              className={styles.cardBody}
+              key={isSubmitting ? 'loading' : lastReservation ? 'confirm' : 'form'}
+            >
+              {isSubmitting ? (
+                <div className={styles.spinnerWrap} role="status" aria-live="polite">
+                  <span className={styles.spinner} aria-hidden="true" />
+                  <span>Confirming your reservation…</span>
+                </div>
+              ) : lastReservation ? (
+                <>
+                  <p className={styles.successMessage} role="status">
+                    Reservation confirmed!
+                  </p>
+                  <ReservationReview reservation={lastReservation} />
+                </>
+              ) : (
+                <BookingForm onSuccess={handleSuccess} />
+              )}
+            </div>
           </aside>
         </section>
       </Reveal>
