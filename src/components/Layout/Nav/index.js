@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
 const Nav = () => {
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Menu', href: '#menu' },
-    { name: 'Reservations', href: '#reservations' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/#about' },
+    { name: 'Menu', href: '/#menu' },
+    { name: 'Reservations', href: '/booking' },
     { name: 'Order Online', href: '#order-online' },
     { name: 'Login', href: '#login' },
   ]
@@ -16,9 +17,9 @@ const Nav = () => {
       <ul className={styles.list}>
         {navLinks.map((link) => (
           <li key={link.href} className={styles.item}>
-            <a href={link.href} className={styles.link}>
+            <Link className={styles.link} to={link.href}>
               {link.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

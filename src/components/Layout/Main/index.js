@@ -1,7 +1,13 @@
 import React from 'react'
+import Hero from '../../UI/Hero'
+import styles from './styles.module.css'
 
 const Main = () => {
-  return <main style={{ backgroundColor: '#eacf3a' }}>MAIN</main>
+  return (
+    <main className={styles.main}>
+      <Hero />
+    </main>
+  )
 }
 
 export default Main

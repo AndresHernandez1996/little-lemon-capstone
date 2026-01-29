@@ -14,12 +14,12 @@ const Footer = () => {
       title: 'Doormat Navigation',
       type: 'links',
       items: [
-        { name: 'Home', url: '#home' },
-        { name: 'About', url: '#about' },
+        { name: 'Home', url: '/' },
+        { name: 'About', url: '/#about' },
         { name: 'Menu', url: '#menu' },
-        { name: 'Reservations', url: '#reservations' },
-        { name: 'Order Online', url: '#order-online' },
-        { name: 'Login', url: '#login' },
+        { name: 'Reservations', url: '/booking' },
+        { name: 'Order Online', url: '/order-online' },
+        { name: 'Login', url: '/login' },
       ],
     },
     {
