@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Booking.module.css'
 import restaurant from '../../../assets/UI/restaurant.jpg'
 import ReservationReview from './ReservationReview'
@@ -13,6 +13,10 @@ const Booking = () => {
   const handleSuccess = (reservation) => {
     setLastReservation(reservation)
   }
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <main className={styles.booking}>
