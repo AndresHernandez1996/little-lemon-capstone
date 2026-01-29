@@ -168,6 +168,8 @@
   font-size: var(--font-size-sm);
   font-family: var(--font-body);
   background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-text-fill-color: var(--color-text-primary);
   resize: vertical;
   max-height: 160px;
 }
@@ -233,6 +235,18 @@ select.control:focus-visible {
   box-shadow: var(--shadow-sm);
 }
 
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.emptyState {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-muted-text);
+}
+
 .submit:active {
   transform: translateY(0);
   background-color: var(--color-secondary);
@@ -270,6 +284,24 @@ select.control:focus-visible {
 @media (max-width: 640px) {
   .content {
     padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  }
+
+  .info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .meta {
+    justify-content: center;
+  }
+
+  .tagRow {
+    justify-content: center;
+  }
+
+  .readMore {
+    width: 100%;
+    justify-content: center;
   }
 
   .inlineRow {

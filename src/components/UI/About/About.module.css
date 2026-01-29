@@ -115,6 +115,11 @@
   .media {
     margin: 0 auto;
   }
+
+  .content {
+    text-align: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 640px) {
@@ -123,6 +128,20 @@
   }
 
   .media {
-    height: 260px;
+    height: auto;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .imagePrimary,
+  .imageSecondary {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .imageSecondary {
+    display: none;
   }
 }

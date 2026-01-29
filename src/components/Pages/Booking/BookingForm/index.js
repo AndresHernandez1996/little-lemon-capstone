@@ -33,6 +33,7 @@ const BookingForm = ({ onSuccess }) => {
     () => (Array.isArray(availableTimes) ? availableTimes : []),
     [availableTimes]
   )
+  const noTimesAvailable = safeTimes.length === 0
   const [submitState, setSubmitState] = useState(null)
   const today = formatDateInput(new Date())
 
@@ -87,7 +88,12 @@ const BookingForm = ({ onSuccess }) => {
   }, [formik, formik.values.date, formik.values.time, formik.setFieldValue])
 
   useEffect(() => {
-    if (!safeTimes.length) return
+    if (!safeTimes.length) {
+      if (formik.values.time) {
+        formik.setFieldValue('time', '', false)
+      }
+      return
+    }
     if (!safeTimes.includes(formik.values.time)) {
       formik.setFieldValue('time', safeTimes[0], false)
     }
@@ -200,6 +206,12 @@ const BookingForm = ({ onSuccess }) => {
           </div>
         </div>
 
+        {noTimesAvailable ? (
+          <p className={styles.emptyState} role="status">
+            No times available for the selected date. Please choose another day.
+          </p>
+        ) : null}
+
         <select
           className={styles.control}
           id="occasion"
@@ -244,7 +256,12 @@ const BookingForm = ({ onSuccess }) => {
           </span>
         ) : null}
 
-        <button className={styles.submit} type="submit" aria-label="Reserve table">
+        <button
+          className={styles.submit}
+          type="submit"
+          aria-label="Reserve table"
+          disabled={noTimesAvailable}
+        >
           Reserve
         </button>
 
