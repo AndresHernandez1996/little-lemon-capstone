@@ -1,5 +1,7 @@
 <img src="public/little-lemon.webp" alt="Little Lemon Preview" width="100%" />
 
+**Live:** https://little-lemon-pi-six.vercel.app
+
 <br />
 
 # Little Lemon Capstone
