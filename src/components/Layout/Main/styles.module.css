@@ -25,30 +25,6 @@
   color: var(--color-text-primary);
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 1000ms ease,
-    transform 1000ms ease;
-}
-
-.revealVisible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal:nth-of-type(2) {
-  transition-delay: 80ms;
-}
-
-.reveal:nth-of-type(3) {
-  transition-delay: 160ms;
-}
-
-.reveal:nth-of-type(4) {
-  transition-delay: 240ms;
-}
 
 @keyframes pageEnter {
   from {
@@ -64,11 +40,6 @@
     animation: none;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
 
 @media (max-width: 640px) {
