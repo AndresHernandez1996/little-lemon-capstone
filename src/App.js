@@ -6,6 +6,7 @@ import Nav from './components/Layout/Nav'
 import Booking from './components/Pages/Booking'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 
 const ScrollToHash = () => {
   const { hash, pathname } = useLocation()
@@ -42,6 +43,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <Analytics />
     </div>
   )
 }
