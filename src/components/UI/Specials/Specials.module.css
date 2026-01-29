@@ -76,7 +76,7 @@
 .cardImage {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: fill;
   background-color: var(--color-secondary-soft);
 }
 
@@ -85,6 +85,7 @@
   flex-direction: column;
   gap: var(--space-sm);
   padding: var(--space-lg);
+  flex: 1;
 }
 
 .cardHeader {

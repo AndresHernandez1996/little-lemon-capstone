@@ -11,23 +11,23 @@ const specials = [
     price: '$12.99',
     image: greekSalad,
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dol sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dol sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dol sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolLorem ipsum dolor',
+      'The famous Greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.',
   },
   {
     id: 2,
-    title: 'Greek Salad',
-    price: '$12.99',
+    title: 'Bruschetta',
+    price: '$5.99',
     image: bruchetta,
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor',
+      'Grilled bread that has been smeared with garlic and seasoned with salt and olive oil, topped with fresh diced tomatoes.',
   },
   {
     id: 3,
-    title: 'Greek Salad',
-    price: '$12.99',
+    title: 'Lemon Dessert',
+    price: '$5.00',
     image: lemonDessert,
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor',
+      "Straight from grandma's recipe book, this creamy lemon dessert is tangy, light, and perfectly sweet.",
   },
 ]
 
