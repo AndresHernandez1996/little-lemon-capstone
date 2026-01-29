@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import Logo from '../../../assets/layout/Logo.svg'
 import styles from './styles.module.css'
 
@@ -38,9 +39,9 @@ const Header = ({ children }) => {
   return (
     <header ref={headerRef} className={styles.header} aria-label="Site header">
       <div className={styles.container}>
-        <a href="/" aria-label="Go to homepage" className={styles.logo}>
+        <Link to="/" aria-label="Go to homepage" className={styles.logo}>
           <img src={Logo} alt="Little Lemon logo" width="160" height="40" />
-        </a>
+        </Link>
 
         {children}
       </div>

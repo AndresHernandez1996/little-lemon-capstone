@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Logo from '../../../assets/layout/Footer-logo.png'
 import styles from './styles.module.css'
 
@@ -61,38 +62,45 @@ const Footer = () => {
                   {section.title}
                 </h2>
 
-                {section.type === 'contact' ? (
-                  <address className={styles.address}>
-                    <ul className={styles.list}>
-                      {section.items.map((item) => (
-                        <li key={item.name} className={styles.item}>
-                          <a href={item.url} className={styles.link}>
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </address>
-                ) : (
-                  <ul className={styles.list}>
-                    {section.items.map((item) => {
-                      const isExternal = item.url.startsWith('http')
+        {section.type === 'contact' ? (
+          <address className={styles.address}>
+            <ul className={styles.list}>
+              {section.items.map((item) => (
+                <li key={item.name} className={styles.item}>
+                  <a href={item.url} className={styles.link}>
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </address>
+        ) : (
+          <ul className={styles.list}>
+            {section.items.map((item) => {
+              const isExternal = item.url.startsWith('http')
+              const isAnchor = item.url.startsWith('#') || item.url.startsWith('/#')
 
-                      return (
-                        <li key={item.name} className={styles.item}>
-                          <a
-                            href={item.url}
-                            className={styles.link}
-                            target={isExternal ? '_blank' : undefined}
-                            rel={isExternal ? 'noreferrer' : undefined}
-                          >
-                            {item.name}
-                          </a>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                )}
+              return (
+                <li key={item.name} className={styles.item}>
+                  {isExternal || isAnchor ? (
+                    <a
+                      href={item.url}
+                      className={styles.link}
+                      target={isExternal ? '_blank' : undefined}
+                      rel={isExternal ? 'noreferrer noopener' : undefined}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link className={styles.link} to={item.url}>
+                      {item.name}
+                    </Link>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        )}
               </section>
             )
           })}

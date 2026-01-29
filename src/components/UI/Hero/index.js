@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import hero from '../../../assets/UI/hero.jpg'
 import styles from './Hero.module.css'
 
@@ -19,13 +20,21 @@ const Hero = () => {
               with a modern twist.
             </p>
 
-            <a className={styles.cta} href="/booking">
+            <Link className={styles.cta} to="/booking">
               Reserve a Table
-            </a>
+            </Link>
           </div>
 
           <div className={styles.media}>
-            <img className={styles.image} src={hero} alt="Little Lemon dishes" />
+            <img
+              className={styles.image}
+              src={hero}
+              alt="Little Lemon dishes"
+              width="400"
+              height="480"
+              decoding="async"
+              loading="eager"
+            />
           </div>
         </div>
       </div>

@@ -2,3 +2,30 @@
   padding-top: var(--header-height);
   background-color: var(--color-primary);
 }
+
+.section {
+  background-color: var(--color-bg);
+  padding: var(--section-padding-y) 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+}

@@ -17,7 +17,7 @@ body {
   font-size: var(--font-size-md);
   line-height: var(--line-height-body);
   color: var(--color-text-primary);
-  background-color: var(--color-text-inverse);
+  background-color: var(--color-bg);
   font-weight: var(--font-weight-regular);
 }
 

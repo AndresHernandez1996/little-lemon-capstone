@@ -4,12 +4,12 @@ import styles from './styles.module.css'
 
 const Nav = () => {
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Menu', href: '/#menu' },
-    { name: 'Reservations', href: '/booking' },
-    { name: 'Order Online', href: '#order-online' },
-    { name: 'Login', href: '#login' },
+    { name: 'Home', href: '/', type: 'route' },
+    { name: 'About', href: '/#about', type: 'anchor' },
+    { name: 'Menu', href: '/#menu', type: 'anchor' },
+    { name: 'Reservations', href: '/booking', type: 'route' },
+    { name: 'Order Online', href: '#order-online', type: 'anchor' },
+    { name: 'Login', href: '#login', type: 'anchor' },
   ]
 
   return (
@@ -17,9 +17,15 @@ const Nav = () => {
       <ul className={styles.list}>
         {navLinks.map((link) => (
           <li key={link.href} className={styles.item}>
-            <Link className={styles.link} to={link.href}>
-              {link.name}
-            </Link>
+            {link.type === 'route' ? (
+              <Link className={styles.link} to={link.href}>
+                {link.name}
+              </Link>
+            ) : (
+              <a className={styles.link} href={link.href}>
+                {link.name}
+              </a>
+            )}
           </li>
         ))}
       </ul>
