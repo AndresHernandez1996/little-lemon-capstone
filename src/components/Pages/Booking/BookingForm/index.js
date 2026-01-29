@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useMemo, useReducer, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import styles from '../Booking.module.css'
@@ -29,6 +29,10 @@ const updateTimes = (state, action) => {
 
 const BookingForm = ({ onSuccess }) => {
   const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes)
+  const safeTimes = useMemo(
+    () => (Array.isArray(availableTimes) ? availableTimes : []),
+    [availableTimes]
+  )
   const [submitState, setSubmitState] = useState(null)
   const today = formatDateInput(new Date())
 
@@ -53,7 +57,7 @@ const BookingForm = ({ onSuccess }) => {
       fullName: '',
       partySize: '2',
       date: today,
-      time: availableTimes[0] ?? '',
+      time: safeTimes[0] ?? '',
       occasion: '',
       comments: '',
     },
@@ -75,24 +79,30 @@ const BookingForm = ({ onSuccess }) => {
 
   useEffect(() => {
     const times = initializeTimes()
-    if (times.length && !formik.values.time) {
-      formik.setFieldValue('time', times[0], false)
+    const safeInitial = Array.isArray(times) ? times : []
+    if (safeInitial.length && !formik.values.time) {
+      formik.setFieldValue('time', safeInitial[0], false)
     }
     dispatch({ type: 'dateChange', payload: new Date(formik.values.date) })
   }, [formik, formik.values.date, formik.values.time, formik.setFieldValue])
 
   useEffect(() => {
-    if (!availableTimes.length) return
-    if (!availableTimes.includes(formik.values.time)) {
-      formik.setFieldValue('time', availableTimes[0], false)
+    if (!safeTimes.length) return
+    if (!safeTimes.includes(formik.values.time)) {
+      formik.setFieldValue('time', safeTimes[0], false)
     }
-  }, [availableTimes, formik, formik.values.time, formik.setFieldValue])
+  }, [safeTimes, formik, formik.values.time, formik.setFieldValue])
 
   return (
     <div>
       <h3 className={styles.cardTitle}>Reserve a table</h3>
 
-      <form onSubmit={formik.handleSubmit} className={styles.form} noValidate>
+      <form
+        onSubmit={formik.handleSubmit}
+        className={styles.form}
+        noValidate
+        aria-label="Reservation form"
+      >
         <input
           className={styles.control}
           id="full-name"
@@ -100,13 +110,17 @@ const BookingForm = ({ onSuccess }) => {
           type="text"
           placeholder="Full name"
           aria-label="Full name"
+          autoComplete="name"
           value={formik.values.fullName}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           aria-invalid={formik.touched.fullName && Boolean(formik.errors.fullName)}
+          aria-describedby={formik.touched.fullName && formik.errors.fullName ? 'full-name-error' : undefined}
         />
         {formik.touched.fullName && formik.errors.fullName ? (
-          <span className={styles.error}>{formik.errors.fullName}</span>
+          <span className={styles.error} id="full-name-error">
+            {formik.errors.fullName}
+          </span>
         ) : null}
 
         <select
@@ -114,6 +128,7 @@ const BookingForm = ({ onSuccess }) => {
           id="party-size"
           name="partySize"
           aria-label="Party size"
+          aria-describedby={formik.touched.partySize && formik.errors.partySize ? 'party-size-error' : undefined}
           value={formik.values.partySize}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -125,7 +140,9 @@ const BookingForm = ({ onSuccess }) => {
           <option value="4">4 guests</option>
         </select>
         {formik.touched.partySize && formik.errors.partySize ? (
-          <span className={styles.error}>{formik.errors.partySize}</span>
+          <span className={styles.error} id="party-size-error">
+            {formik.errors.partySize}
+          </span>
         ) : null}
 
         <div className={styles.inlineRow}>
@@ -136,6 +153,7 @@ const BookingForm = ({ onSuccess }) => {
               name="date"
               type="date"
               aria-label="Reservation date"
+              aria-describedby={formik.touched.date && formik.errors.date ? 'date-error' : undefined}
               value={formik.values.date}
               onChange={(event) => {
                 formik.handleChange(event)
@@ -146,7 +164,9 @@ const BookingForm = ({ onSuccess }) => {
               aria-invalid={formik.touched.date && Boolean(formik.errors.date)}
             />
             {formik.touched.date && formik.errors.date ? (
-              <span className={styles.error}>{formik.errors.date}</span>
+              <span className={styles.error} id="date-error">
+                {formik.errors.date}
+              </span>
             ) : null}
           </div>
           <div className={styles.inlineField}>
@@ -155,24 +175,27 @@ const BookingForm = ({ onSuccess }) => {
               id="time"
               name="time"
               aria-label="Reservation time"
+              aria-describedby={formik.touched.time && formik.errors.time ? 'time-error' : undefined}
               value={formik.values.time}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               aria-invalid={formik.touched.time && Boolean(formik.errors.time)}
             >
-              {!availableTimes.length ? (
+              {!safeTimes.length ? (
                 <option value="" disabled>
                   No times available
                 </option>
               ) : null}
-              {availableTimes.map((time) => (
+              {safeTimes.map((time) => (
                 <option key={time} value={time}>
                   {time}
                 </option>
               ))}
             </select>
             {formik.touched.time && formik.errors.time ? (
-              <span className={styles.error}>{formik.errors.time}</span>
+              <span className={styles.error} id="time-error">
+                {formik.errors.time}
+              </span>
             ) : null}
           </div>
         </div>
@@ -182,6 +205,7 @@ const BookingForm = ({ onSuccess }) => {
           id="occasion"
           name="occasion"
           aria-label="Occasion"
+          aria-describedby={formik.touched.occasion && formik.errors.occasion ? 'occasion-error' : undefined}
           value={formik.values.occasion}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -196,7 +220,9 @@ const BookingForm = ({ onSuccess }) => {
           <option value="business">Business meal</option>
         </select>
         {formik.touched.occasion && formik.errors.occasion ? (
-          <span className={styles.error}>{formik.errors.occasion}</span>
+          <span className={styles.error} id="occasion-error">
+            {formik.errors.occasion}
+          </span>
         ) : null}
 
         <textarea
@@ -206,16 +232,19 @@ const BookingForm = ({ onSuccess }) => {
           rows="3"
           placeholder="Allergies or seating requests"
           aria-label="Comments"
+          aria-describedby={formik.touched.comments && formik.errors.comments ? 'comments-error' : undefined}
           value={formik.values.comments}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           aria-invalid={formik.touched.comments && Boolean(formik.errors.comments)}
         />
         {formik.touched.comments && formik.errors.comments ? (
-          <span className={styles.error}>{formik.errors.comments}</span>
+          <span className={styles.error} id="comments-error">
+            {formik.errors.comments}
+          </span>
         ) : null}
 
-        <button className={styles.submit} type="submit">
+        <button className={styles.submit} type="submit" aria-label="Reserve table">
           Reserve
         </button>
 
@@ -233,3 +262,4 @@ const BookingForm = ({ onSuccess }) => {
 }
 
 export default BookingForm
+export { initializeTimes, updateTimes }

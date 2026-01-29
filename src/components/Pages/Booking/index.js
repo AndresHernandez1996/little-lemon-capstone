@@ -9,6 +9,10 @@ const tags = ['Seasonal menu', 'Family friendly', 'Perfect for celebrations']
 const Booking = () => {
   const [lastReservation, setLastReservation] = useState(null)
 
+  const handleSuccess = (reservation) => {
+    setLastReservation(reservation)
+  }
+
   return (
     <main className={styles.booking}>
       <section className={styles.hero} aria-labelledby="booking-title">
@@ -58,7 +62,7 @@ const Booking = () => {
               <ReservationReview reservation={lastReservation} />
             </>
           ) : (
-            <BookingForm onSuccess={setLastReservation} />
+            <BookingForm onSuccess={handleSuccess} />
           )}
         </aside>
       </section>
