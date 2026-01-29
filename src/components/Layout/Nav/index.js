@@ -6,7 +6,7 @@ const Nav = () => {
   const navLinks = [
     { name: 'Home', href: '/', type: 'route' },
     { name: 'About', href: '/#about', type: 'anchor' },
-    { name: 'Menu', href: '/#menu', type: 'anchor' },
+    { name: 'Menu', href: '/#specials', type: 'anchor' },
     { name: 'Reservations', href: '/booking', type: 'route' },
     { name: 'Order Online', href: '#order-online', type: 'anchor' },
     { name: 'Login', href: '#login', type: 'anchor' },

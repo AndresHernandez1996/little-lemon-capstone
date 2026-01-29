@@ -3,7 +3,28 @@ import Footer from './components/Layout/Footer'
 import Header from './components/Layout/Header'
 import Main from './components/Layout/Main'
 import Nav from './components/Layout/Nav'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+const ScrollToHash = () => {
+  const { hash, pathname } = useLocation()
+
+  useEffect(() => {
+    if (!hash) {
+      if (pathname === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+
+    const target = document.getElementById(hash.replace('#', ''))
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [hash, pathname])
+
+  return null
+}
 
 function App() {
   return (
@@ -11,6 +32,8 @@ function App() {
       <Header>
         <Nav />
       </Header>
+
+      <ScrollToHash />
 
       <Routes>
         <Route path="/" element={<Main />} />

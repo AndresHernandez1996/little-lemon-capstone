@@ -17,7 +17,7 @@ const Footer = () => {
       items: [
         { name: 'Home', url: '/' },
         { name: 'About', url: '/#about' },
-        { name: 'Menu', url: '#menu' },
+        { name: 'Menu', url: '#specials' },
         { name: 'Reservations', url: '/booking' },
         { name: 'Order Online', url: '/order-online' },
         { name: 'Login', url: '/login' },
@@ -62,45 +62,45 @@ const Footer = () => {
                   {section.title}
                 </h2>
 
-        {section.type === 'contact' ? (
-          <address className={styles.address}>
-            <ul className={styles.list}>
-              {section.items.map((item) => (
-                <li key={item.name} className={styles.item}>
-                  <a href={item.url} className={styles.link}>
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </address>
-        ) : (
-          <ul className={styles.list}>
-            {section.items.map((item) => {
-              const isExternal = item.url.startsWith('http')
-              const isAnchor = item.url.startsWith('#') || item.url.startsWith('/#')
+                {section.type === 'contact' ? (
+                  <address className={styles.address}>
+                    <ul className={styles.list}>
+                      {section.items.map((item) => (
+                        <li key={item.name} className={styles.item}>
+                          <a href={item.url} className={styles.link}>
+                            {item.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </address>
+                ) : (
+                  <ul className={styles.list}>
+                    {section.items.map((item) => {
+                      const isExternal = item.url.startsWith('http')
+                      const isAnchor = item.url.startsWith('#') || item.url.startsWith('/#')
 
-              return (
-                <li key={item.name} className={styles.item}>
-                  {isExternal || isAnchor ? (
-                    <a
-                      href={item.url}
-                      className={styles.link}
-                      target={isExternal ? '_blank' : undefined}
-                      rel={isExternal ? 'noreferrer noopener' : undefined}
-                    >
-                      {item.name}
-                    </a>
-                  ) : (
-                    <Link className={styles.link} to={item.url}>
-                      {item.name}
-                    </Link>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        )}
+                      return (
+                        <li key={item.name} className={styles.item}>
+                          {isExternal || isAnchor ? (
+                            <a
+                              href={item.url}
+                              className={styles.link}
+                              target={isExternal ? '_blank' : undefined}
+                              rel={isExternal ? 'noreferrer noopener' : undefined}
+                            >
+                              {item.name}
+                            </a>
+                          ) : (
+                            <Link className={styles.link} to={item.url}>
+                              {item.name}
+                            </Link>
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
               </section>
             )
           })}

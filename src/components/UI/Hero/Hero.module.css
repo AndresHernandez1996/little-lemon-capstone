@@ -1,7 +1,7 @@
 .hero {
   background: var(--color-primary);
   background-color: var(--color-primary);
-  padding: 88px 0 96px; /* MÁS alto como el screenshot */
+  padding: 88px 0 96px;
 }
 
 .container {
