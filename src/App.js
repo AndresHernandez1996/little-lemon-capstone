@@ -3,6 +3,7 @@ import Footer from './components/Layout/Footer'
 import Header from './components/Layout/Header'
 import Main from './components/Layout/Main'
 import Nav from './components/Layout/Nav'
+import Booking from './components/Pages/Booking'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -37,7 +38,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/booking" element={<div>Booking Page</div>} />
+        <Route path="/booking" element={<Booking />} />
       </Routes>
 
       <Footer />
