@@ -184,7 +184,7 @@ input[type='date'].control {
   text-align: left;
   max-width: 100%;
   display: block;
-  overflow: hidden;
+  padding-right: 36px;
 }
 
 input[type='date'].control::-webkit-date-and-time-value {
@@ -236,7 +236,6 @@ select.control:focus-visible {
   flex-direction: column;
   gap: 6px;
   min-width: 0;
-  overflow: hidden;
 }
 
 .submit {
@@ -364,6 +363,20 @@ select.control:focus-visible {
 
   .inlineRow {
     grid-template-columns: 1fr;
+  }
+
+  input[type='date'].control {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 12px;
+  }
+
+  input[type='date'].control::-webkit-date-and-time-value {
+    width: 100%;
+  }
+
+  input[type='date'].control::-webkit-calendar-picker-indicator {
+    margin: 0;
   }
 
   .hero {
